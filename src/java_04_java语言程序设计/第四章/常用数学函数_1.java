@@ -1,6 +1,7 @@
 package java_04_java语言程序设计.第四章;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 /**
  * Created by Administrator on 2017/8/27 0027.

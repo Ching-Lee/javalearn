@@ -1,15 +1,19 @@
 package java_04_java语言程序设计.第25章_二叉查找树;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  * 实现二叉查找树的增删改查
  */
-public class TreeNodeCrud<E extends Comparable<E>>{
+public class BST<E extends Comparable<E>>{
     private TreeNode<E> root;
     private int size=0;
-    public TreeNodeCrud(){
+    public BST(){
 
     }
-    public TreeNodeCrud(E[] objects){
+    public BST(E[] objects){
         for(int i=0;i<objects.length;i++)
             insert(objects[i]);
     }
@@ -97,6 +101,27 @@ public class TreeNodeCrud<E extends Comparable<E>>{
         preorder(root.right);
     }
 
+    //前序遍历非递归实现
+    public void iterativepreorder(){
+        iterativepreorder(root);
+    }
+
+    private void iterativepreorder(TreeNode<E> root) {
+        Stack<TreeNode> stack=new Stack<>();
+        if(root!=null){
+            stack.push(root);
+            while(!stack.isEmpty()){
+                TreeNode current=stack.pop();
+                System.out.print(current.element+" ");
+                if(current.right!=null)
+                    stack.add(current.right);
+                if(current.left!=null)
+                    stack.add(current.left);
+            }
+        }
+    }
+
+
     //2.中序遍历
     public void inorder(){
         inorder(root);
@@ -109,7 +134,30 @@ public class TreeNodeCrud<E extends Comparable<E>>{
         inorder(root.right);
     }
 
+    //中序遍历非递归实现
+    public void iterativeinorder(){
+        iterativeinorder(root);
+    }
 
+    private void iterativeinorder(TreeNode<E> root) {
+        Stack<TreeNode> stack=new Stack<>();
+        if(root!=null){
+           TreeNode node=root;
+           while(node!=null||stack.size()>0){
+               //将所有的左侧结点入栈
+               while (node!=null){
+                   stack.add(node);
+                   node=node.left;
+               }
+               if(stack.size()>0){
+                   TreeNode current=stack.pop();
+                   System.out.print(current.element+" ");
+                   if(current.right!=null)
+                       node=current.right;
+               }
+           }
+        }
+    }
     //后序遍历
     public void postorder(){
         postorder(root);
@@ -122,6 +170,63 @@ public class TreeNodeCrud<E extends Comparable<E>>{
         System.out.print(root.element+" ");
     }
 
+    //非递归后序遍历
+    public void iterativepostorder(){
+        iterativepostorder(root);
+    }
+
+    private void iterativepostorder(TreeNode<E> root) {
+        Stack<TreeNode> stack=new Stack<>();
+        if(root!=null){
+            TreeNode node=root;
+            TreeNode preNode=null;
+            while (node!=null||stack.size()>0){
+
+                //将左侧结点全部压入栈
+                while (node!=null){
+                    stack.add(node);
+                    node=node.left;
+                }
+                if(stack.size()>0){
+                    //如果该节点的右结点为null，或者已经被访问
+                    if(stack.peek().right==null||stack.peek().right==preNode){
+                        TreeNode current=stack.pop();
+                        System.out.print(current.element+" ");
+                        //记录前一个被访问的结点
+                        preNode=current;
+                    }else {
+                        node=stack.peek().right;
+                    }
+
+                }
+            }
+        }
+    }
+
+    //广度优先遍历(层次遍历)
+    public void layerTraversal(){
+        layerTraversal(root);
+    }
+
+    private void layerTraversal(TreeNode<E> root) {
+        Queue<TreeNode> queue=new LinkedList<>();
+        if(root!=null) {
+            queue.add(root);
+            //当队列不是空的
+            while (!queue.isEmpty()) {
+
+                //弹出第一个结点
+                TreeNode current = queue.poll();
+                System.out.print(current.element+" ");
+                //如果该结点的左孩子不是null，加入到队列中
+                if (current.left != null)
+                    queue.offer(current.left);
+                //如果该结点的右孩子不是null，加入到队列中
+                if (current.right != null)
+                    queue.offer(current.right);
+            }
+        }
+    }
 
 
     //删除元素

@@ -1,6 +1,7 @@
 package java_04_java语言程序设计.第23章_排序;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 /**
  *  插入第p个元素，保证从位置0到位置p-1是已排序的状态。

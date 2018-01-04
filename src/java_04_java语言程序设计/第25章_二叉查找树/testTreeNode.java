@@ -7,23 +7,39 @@ public class testTreeNode {
     public static void main(String[] args){
         //创建三个节点
         Integer []node={60,55,100,45,57,67,107,59,101};
-        TreeNodeCrud<Integer> treeNodeCrud=new TreeNodeCrud<Integer>(node);
+        BST<Integer> BST =new BST<Integer>(node);
         //前序遍历
         System.out.println("前序遍历：");
-        treeNodeCrud.preorder();
+        BST.preorder();
+        System.out.println();
+        //非递归前序遍历
+        System.out.println("非递归前序遍历：");
+        BST.iterativepreorder();
         System.out.println();
         //中序遍历
         System.out.println("中序遍历：");
-        treeNodeCrud.inorder();
+        BST.inorder();
+        System.out.println();
+        //非递归中序遍历
+        System.out.println("非递归中序遍历：");
+        BST.iterativeinorder();
         System.out.println();
         //后序遍历
         System.out.println("后序遍历：");
-        treeNodeCrud.postorder();
+        BST.postorder();
+        System.out.println();
+        //非递归h后序遍历
+        System.out.println("非递归后序遍历：");
+        BST.iterativepostorder();
+        System.out.println();
+        //广度优先遍历
+        System.out.println("广度优先遍历：");
+        BST.layerTraversal();
         System.out.println();
 
-        treeNodeCrud.delete(55);
+        BST.delete(55);
         System.out.println("删除后前序遍历：");
-        treeNodeCrud.preorder();
+        BST.preorder();
         System.out.println();
 
     }

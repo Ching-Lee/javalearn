@@ -1,6 +1,6 @@
 package java_04_java语言程序设计.第23章_排序;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Created by Administrator on 2017/12/4 0004.
@@ -11,7 +11,7 @@ public class text4_快速排序 {
     }
 
     private void quickSort(int[] list, int first, int last) {
-        if(last>first){
+        if(last>=first){
             int pivotIndex=partition(list,first,last);
             quickSort(list,0,pivotIndex-1);
             quickSort(list,pivotIndex+1,last);
@@ -55,8 +55,6 @@ public class text4_快速排序 {
 
 
     }
-
-
 
     @Test
     public void test(){

@@ -1,6 +1,7 @@
 package java_04_java语言程序设计.第23章_排序;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 /**
  * Created by Administrator on 2017/12/4 0004.
